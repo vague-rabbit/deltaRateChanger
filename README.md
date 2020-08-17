@@ -1,2 +1,2 @@
 # deltaRateChanger
-My attempt at creating rate changer for osu.
+My attempt at creating a rate changer for osu.
