@@ -54,20 +54,20 @@ class Program():
             # Creating new audio file
             if self.ui.pitchCheckBox.isChecked():
                 sample_rate = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "stream=sample_rate", "-of", "default=noprint_wrappers=1:nokey=1", self.new_beatmap.input_audio_path], text=True, creationflags=subprocess.CREATE_NO_WINDOW).strip()
-                subprocess.call(["ffmpeg", "-i", 
-                                self.beatmap.input_audio_path, 
-                                "-filter:a", 
-                                f"asetrate={sample_rate}*{self.speed_rate},aresample={sample_rate}", 
-                                "-vn", 
-                                self.output_audio_path, 
+                subprocess.call(["ffmpeg", "-i",
+                                self.beatmap.input_audio_path,
+                                "-filter:a",
+                                f"asetrate={sample_rate}*{self.speed_rate},aresample={sample_rate}",
+                                "-vn",
+                                self.output_audio_path,
                                 "-y"], stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
             else:
-                subprocess.call(["ffmpeg", "-i", 
-                                self.beatmap.input_audio_path, 
-                                "-filter:a", 
-                                f"atempo={self.speed_rate}", 
-                                "-vn", 
-                                self.output_audio_path, 
+                subprocess.call(["ffmpeg", "-i",
+                                self.beatmap.input_audio_path,
+                                "-filter:a",
+                                f"atempo={self.speed_rate}",
+                                "-vn",
+                                self.output_audio_path,
                                 "-y"], stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
             # Actually changing speed
             self.new_beatmap.data["[General]"]["PreviewTime"] = str(round(float(self.new_beatmap.data["[General]"]["PreviewTime"]) / self.speed_rate))
