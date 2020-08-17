@@ -6,4 +6,4 @@ Written in python using PyQt5.
 0. Install python (obviously).
 1. Download ffmpeg, ffprobe binaries, place them in the folder with this program(or make them system-wide by adding them to a PATH variable added folder)
 2. Install pyqt5: pip install pyqt5
-3. Done.
+3. Open main.pyw.
