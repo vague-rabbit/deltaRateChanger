@@ -1,4 +1,5 @@
-# deltaRateChanger  
+![alt text](δ Rate Changer.png?raw=true)
+# δ Rate Changer  
 My attempt at creating a rate changer for osu.  
 Written in python using PyQt5.  
 
