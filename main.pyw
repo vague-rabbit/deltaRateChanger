@@ -71,6 +71,8 @@ class Program():
                                 "-y"], stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
             # Actually changing speed
             self.new_beatmap.data["[General]"]["PreviewTime"] = str(round(float(self.new_beatmap.data["[General]"]["PreviewTime"]) / self.speed_rate))
+            self.new_beatmap.data["[Editor]"]["Bookmarks"] = ",".join([str(round(int(value) / self.speed_rate)) for value in self.new_beatmap.data["[Editor]"]["Bookmarks"].split(",")])
+            self.new_beatmap.data["[General]"]["AudioLeadIn"] = str(round(int(self.new_beatmap.data["[General]"]["AudioLeadIn"]) / self.speed_rate))
             for timing_point in self.new_beatmap.data["[TimingPoints]"]:
                 timing_point[0] = str(round(float(timing_point[0]) / self.speed_rate))
                 if timing_point[6] == "1":
