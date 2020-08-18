@@ -108,6 +108,6 @@ class bm():
         for value in self.data["[TimingPoints]"]:
             if value[6] == "1" and value[0] == str(time_max):
                 bpm = round(1 / float(value[1]) * 1000 * 60)
-        # Actually we still need to take into account that bpm can repeat: 200→220→200, and actually add times up.
+        # Actually we still need to take into account that bpm can repeat: 200→220→200, and add times up.
         # I think I will add this later.
         return bpm
