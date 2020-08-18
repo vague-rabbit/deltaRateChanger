@@ -1,6 +1,6 @@
 ![](screenshot.png?raw=true)
 # δ Rate Changer  
-My attempt at creating a rate changer for osu.  
+My attempt at creating a rate changer for osu!.  
 Written in python using PyQt5.  
 
 # Install and setup  
