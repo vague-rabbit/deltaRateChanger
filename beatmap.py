@@ -107,5 +107,4 @@ class bm():
                 bpm_lengths.append([value[2], value[1]])
         # Finally finding the main bpm
         bpm = max(bpm_lengths, key=operator.itemgetter(1))[0]
-        print(bpm)
         return bpm
