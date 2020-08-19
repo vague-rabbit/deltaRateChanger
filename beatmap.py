@@ -55,7 +55,7 @@ class bm():
     
     def write(self, file_path):
         with open(file_path, "w+", encoding="UTF-8") as file:
-            # Some maps doesn't seem to work if I write the old version, so let's just use new version then
+            # Some maps don't seem to work if I write the old version, so let's just use new version then
             # old version → file.write(self.file_format + "\n\n")
             file.write(self.file_format_14 + "\n\n")
             # Writing every section
