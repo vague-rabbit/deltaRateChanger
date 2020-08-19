@@ -1,4 +1,7 @@
 import sys
+import PyQt5
+
+from PyQt5 import QtCore
 from mainwindow import Ui_MainWindow
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QFileDialog
@@ -12,6 +15,8 @@ class Program():
     def __init__(self):
         # For convenience, later will make auto detection ↓
         self.osu_directory = r"D:\Games\osu!\Songs"
+        # Streamcompanion integration - loads in-game selected beatmaps automatically
+        self.selected_now = r"C:\Program Files (x86)\StreamCompanion\Files\selected_now.txt"
         self.initUI()
 
     def initUI(self):
@@ -20,12 +25,22 @@ class Program():
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.MainWindow)
         self.MainWindow.setFixedSize(self.MainWindow.size())
-        self.ui.chooseDirectoryButton.clicked.connect(self.loadBeatmap)
+        self.ui.chooseDirectoryButton.clicked.connect(self.loadBeatmap, True)
         self.ui.changeRateButton.clicked.connect(self.changeSpeed)
         self.ui.changeBpmButton.clicked.connect(self.changeSpeed)
+        if os.path.isfile(self.selected_now):
+            fs_watcher = QtCore.QFileSystemWatcher(self.MainWindow)
+            fs_watcher.addPath(self.selected_now)
+            fs_watcher.fileChanged.connect(self.file_changed)
+    
+    def file_changed(self):
+        with open(self.selected_now, "r", encoding="UTF-8") as file:
+            self.file_path = file.read().strip()
+        self.loadBeatmap(False)
 
-    def loadBeatmap(self):
-        self.file_path = QFileDialog.getOpenFileName(self.MainWindow, directory=self.osu_directory)[0]
+    def loadBeatmap(self, clicked):
+        if clicked:
+            self.file_path = QFileDialog.getOpenFileName(self.MainWindow, directory=self.osu_directory)[0]
         if self.file_path:
             os.chdir(os.path.dirname(self.file_path))
             self.ui.pathLineEdit.setText(self.file_path)
@@ -71,8 +86,10 @@ class Program():
                                 "-y"], stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW)
             # Actually changing speed
             self.new_beatmap.data["[General]"]["PreviewTime"] = str(round(float(self.new_beatmap.data["[General]"]["PreviewTime"]) / self.speed_rate))
-            self.new_beatmap.data["[Editor]"]["Bookmarks"] = ",".join([str(round(int(value) / self.speed_rate)) for value in self.new_beatmap.data["[Editor]"]["Bookmarks"].split(",")])
-            self.new_beatmap.data["[General]"]["AudioLeadIn"] = str(round(int(self.new_beatmap.data["[General]"]["AudioLeadIn"]) / self.speed_rate))
+            if self.new_beatmap.data["[Editor]"].get("Bookmarks"):
+                self.new_beatmap.data["[Editor]"]["Bookmarks"] = ",".join([str(round(int(value) / self.speed_rate)) for value in self.new_beatmap.data["[Editor]"]["Bookmarks"].split(",")])
+            if self.new_beatmap.data["[General]"].get("AudioLeadIn"):
+                self.new_beatmap.data["[General]"]["AudioLeadIn"] = str(round(int(self.new_beatmap.data["[General]"]["AudioLeadIn"]) / self.speed_rate))
             for timing_point in self.new_beatmap.data["[TimingPoints]"]:
                 timing_point[0] = str(round(float(timing_point[0]) / self.speed_rate))
                 if timing_point[6] == "1":
