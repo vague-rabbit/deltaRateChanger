@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>★Rate Changer★ Xtreme δ Deluxx Edition v1.77c Final (fix incl.)</string>
+   <string>★Rate Changer★ Xtreme δ Deluxx Edition v1.77c Final</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="pathLineEdit">
