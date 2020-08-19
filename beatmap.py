@@ -1,3 +1,5 @@
+import operator
+
 class bm():
     def __init__(self, file_path):
         self.file_path = file_path
@@ -89,25 +91,21 @@ class bm():
                     file.write("\n")
     
     def find_bpm(self):
-        # Am I stupid for making it so complicated, or am I a genius and actully did it right? I don't know at this point...
-        uninherited_timing_points_times = [value[0] for value in self.data["[TimingPoints]"] if value[6] == "1"]
+        uninherited_timing_points_times = [(value[0], value[1]) for value in self.data["[TimingPoints]"] if value[6] == "1"]
         diffs = []
         for value in enumerate(uninherited_timing_points_times):
             try:
-                diffs.append((uninherited_timing_points_times[value[0]], int(uninherited_timing_points_times[value[0] + 1]) - int(uninherited_timing_points_times[value[0]])))
+                diffs.append([uninherited_timing_points_times[value[0]][0], int(uninherited_timing_points_times[value[0] + 1][0]) - int(uninherited_timing_points_times[value[0]][0]), round(1 / float(uninherited_timing_points_times[value[0]][1]) * 1000 * 60)])
             except IndexError:
-                diffs.append((uninherited_timing_points_times[value[0]], int(self.data["[HitObjects]"][-1][2]) - int(uninherited_timing_points_times[value[0]])))
+                diffs.append([uninherited_timing_points_times[value[0]][0], int(self.data["[HitObjects]"][-1][2]) - int(uninherited_timing_points_times[value[0]][0]), round(1 / float(uninherited_timing_points_times[value[0]][1]) * 1000 * 60)])
                 break
-        max = [0, 0]
+        bpm_diffs = []
+        bpms = []
         for value in enumerate(diffs):
-            if diffs[value[0]][1] > max[1]:
-                max[0] = diffs[value[0]][0]
-                max[1] = diffs[value[0]][1]
-        time_max = max[0]
-        bpm = 0
-        for value in self.data["[TimingPoints]"]:
-            if value[6] == "1" and value[0] == str(time_max):
-                bpm = round(1 / float(value[1]) * 1000 * 60)
-        # Actually we still need to take into account that bpm can repeat: 200→220→200, and add times up.
-        # I think I will add this later.
+            if value[1][2] in bpms:
+                bpm_diffs[bpms.index(value[1][2])][1] += value[1][1]
+            else:
+                bpms.append(value[1][2])
+                bpm_diffs.append([value[1][2], value[1][1]])
+        bpm = max(bpm_diffs, key=operator.itemgetter(1))[0]
         return bpm
