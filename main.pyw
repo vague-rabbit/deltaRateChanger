@@ -47,6 +47,7 @@ class Program():
             self.beatmap.version_file = self.file_path[self.file_path.rfind("[")+1:self.file_path.rfind("]")]
             self.beatmap.version = self.beatmap.data["[Metadata]"]["Version"]
             self.beatmap.bpm = self.beatmap.find_bpm()
+            self.ui.bpmSpinBox.setRange(0, 1000)
             self.ui.bpmSpinBox.setValue(self.beatmap.bpm)
             self.ui.bpmSpinBox.setMinimum(int(self.beatmap.bpm * 0.5))
             self.ui.bpmSpinBox.setMaximum(int(self.beatmap.bpm * 2))

@@ -99,12 +99,13 @@ class bm():
         # Creating bpm_lengths that is [bpm, length]
         bpm_lengths = []
         bpms = []
-        for value in enumerate(diffs):
-            if value[1][2] in bpms:
-                bpm_lengths[bpms.index(value[1][2])][1] += value[1][1]
+        for value in diffs:
+            if value[2] in bpms:
+                bpm_lengths[bpms.index(value[2])][1] += value[1]
             else:
-                bpms.append(value[1][2])
-                bpm_lengths.append([value[1][2], value[1][1]])
+                bpms.append(value[2])
+                bpm_lengths.append([value[2], value[1]])
         # Finally finding the main bpm
         bpm = max(bpm_lengths, key=operator.itemgetter(1))[0]
+        print(bpm)
         return bpm
