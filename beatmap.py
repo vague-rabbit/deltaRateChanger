@@ -92,9 +92,9 @@ class bm():
             # Calculating timing_point[i+1] - timing_point[i]
             # If IndexError = this is the last value, don't forget to calculate it too
             try:
-                diffs.append([uninherited_timing_points_times[value[0]][0], float(round(uninherited_timing_points_times[value[0] + 1][0])) - round(float(uninherited_timing_points_times[value[0]][0])), round(1 / float(uninherited_timing_points_times[value[0]][1]) * 1000 * 60)])
+                diffs.append([uninherited_timing_points_times[value[0]][0], float(uninherited_timing_points_times[value[0] + 1][0]) - float(uninherited_timing_points_times[value[0]][0]), round(1 / float(uninherited_timing_points_times[value[0]][1]) * 1000 * 60)])
             except IndexError:
-                diffs.append([uninherited_timing_points_times[value[0]][0], int(self.data["[HitObjects]"][-1][2]) - round(float(uninherited_timing_points_times[value[0]][0])), round(1 / float(uninherited_timing_points_times[value[0]][1]) * 1000 * 60)])
+                diffs.append([uninherited_timing_points_times[value[0]][0], int(self.data["[HitObjects]"][-1][2]) - float(uninherited_timing_points_times[value[0]][0]), round(1 / float(uninherited_timing_points_times[value[0]][1]) * 1000 * 60)])
                 break
         # Creating bpm_lengths that is [bpm, length]
         bpm_lengths = []
