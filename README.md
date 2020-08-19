@@ -1,4 +1,4 @@
-![](screenshot.png?raw=true)
+![](screenshot1.png?raw=true)
 # δ Rate Changer  
 My attempt at creating a rate changer for osu!.  
 Written in python using PyQt5.  
