@@ -17,6 +17,7 @@ class Program():
         self.osu_directory = r"D:\Games\osu!\Songs"
         # Streamcompanion integration - loads in-game selected beatmaps automatically
         self.selected_now = r"C:\Program Files (x86)\StreamCompanion\Files\selected_now.txt"
+        self.file_path = ""
         self.initUI()
 
     def initUI(self):
@@ -25,7 +26,7 @@ class Program():
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.MainWindow)
         self.MainWindow.setFixedSize(self.MainWindow.size())
-        self.ui.chooseDirectoryButton.clicked.connect(self.loadBeatmap, True)
+        self.ui.chooseDirectoryButton.clicked.connect(lambda: self.loadBeatmap(True))
         self.ui.changeRateButton.clicked.connect(self.changeSpeed)
         self.ui.changeBpmButton.clicked.connect(self.changeSpeed)
         if os.path.isfile(self.selected_now):
@@ -124,9 +125,9 @@ class Program():
                     self.new_beatmap.data["[Difficulty]"]["ApproachRate"] = str(modified_ar)
             # Writing to new .osu file
             if self.ui.changeBpmButton.isChecked():
-                self.new_beatmap.write(f"{self.file_path[:self.file_path.find(self.new_beatmap.version)] + self.new_beatmap.version} [{self.ui.bpmSpinBox.value()} BPM]].osu")
+                self.new_beatmap.write(f"{self.file_path[:self.file_path.rfind(self.new_beatmap.version)] + self.new_beatmap.version} [{self.ui.bpmSpinBox.value()} BPM]].osu")
             else:
-                self.new_beatmap.write(f"{self.file_path[:self.file_path.find(self.new_beatmap.version)] + self.new_beatmap.version} x{self.speed_rate}].osu")
+                self.new_beatmap.write(f"{self.file_path[:self.file_path.rfind(self.new_beatmap.version)] + self.new_beatmap.version} x{self.speed_rate}].osu")
         self.ui.changeRateButton.setChecked(False)
         self.ui.changeBpmButton.setChecked(False)
 
