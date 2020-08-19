@@ -48,6 +48,7 @@ class Program():
             self.beatmap = bm(self.file_path)
             self.beatmap.audio_name = self.beatmap.data["[General]"]["AudioFilename"][:-4]
             self.beatmap.input_audio_path = self.beatmap.data["[General]"]["AudioFilename"]
+            self.beatmap.version_file = self.file_path[self.file_path.rfind("[")+1:self.file_path.rfind("]")]
             self.beatmap.version = self.beatmap.data["[Metadata]"]["Version"]
             self.beatmap.bpm = self.beatmap.find_bpm()
             self.ui.bpmSpinBox.setValue(self.beatmap.bpm)
@@ -125,9 +126,9 @@ class Program():
                     self.new_beatmap.data["[Difficulty]"]["ApproachRate"] = str(modified_ar)
             # Writing to new .osu file
             if self.ui.changeBpmButton.isChecked():
-                self.new_beatmap.write(f"{self.file_path[:self.file_path.rfind(self.new_beatmap.version)] + self.new_beatmap.version} [{self.ui.bpmSpinBox.value()} BPM]].osu")
+                self.new_beatmap.write(f"{self.file_path[:self.file_path.rfind(self.new_beatmap.version_file)] + self.new_beatmap.version_file} [{self.ui.bpmSpinBox.value()} BPM]].osu")
             else:
-                self.new_beatmap.write(f"{self.file_path[:self.file_path.rfind(self.new_beatmap.version)] + self.new_beatmap.version} x{self.speed_rate}].osu")
+                self.new_beatmap.write(f"{self.file_path[:self.file_path.rfind(self.new_beatmap.version_file)] + self.new_beatmap.version_file} x{self.speed_rate}].osu")
         self.ui.changeRateButton.setChecked(False)
         self.ui.changeBpmButton.setChecked(False)
 

@@ -25,14 +25,14 @@ class bm():
         return lines
 
     def _read1(self, section, line):
-        if "//" not in line:
+        if "//" not in line[:2]:
             key = line.split(":")[0].strip()
             value = line.split(":")[1].strip()
             self.data[section][key] = value
             
     
     def _read2(self, section, line):
-        if "//" not in line:
+        if "//" not in line[:2]:
             self.data[section].append(line.split(","))
     
     def read(self):
