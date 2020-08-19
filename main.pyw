@@ -1,13 +1,10 @@
 import sys
-import PyQt5
-
-from PyQt5 import QtCore
-from mainwindow import Ui_MainWindow
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore, uic
 from PyQt5.QtWidgets import QApplication, QFileDialog
 from beatmap import bm
 import subprocess
 import os
+
 from copy import deepcopy
 
 
@@ -23,8 +20,7 @@ class Program():
     def initUI(self):
         self.app = QApplication(sys.argv)
         self.MainWindow = QtWidgets.QMainWindow()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self.MainWindow)
+        self.ui = uic.loadUi("mainwindow.ui", self.MainWindow)
         self.MainWindow.setFixedSize(self.MainWindow.size())
         self.ui.chooseDirectoryButton.clicked.connect(lambda: self.loadBeatmap(True))
         self.ui.changeRateButton.clicked.connect(self.changeSpeed)

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>766</width>
+    <width>725</width>
     <height>93</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>691</width>
+      <width>657</width>
       <height>31</height>
      </rect>
     </property>
@@ -32,7 +32,7 @@
    <widget class="QPushButton" name="chooseDirectoryButton">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>666</x>
       <y>9</y>
       <width>51</width>
       <height>33</height>
@@ -193,7 +193,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Adjust AR/OD</string>
+     <string>Adjust stats</string>
     </property>
     <property name="checked">
      <bool>true</bool>
@@ -205,17 +205,17 @@
    <zorder>bpmSpinBox</zorder>
    <zorder>rateDoubleSpinBox</zorder>
    <zorder>pathLineEdit</zorder>
-   <zorder>chooseDirectoryButton</zorder>
    <zorder>rateLabel</zorder>
    <zorder>adjustCheckBox</zorder>
    <zorder>pitchCheckBox</zorder>
+   <zorder>chooseDirectoryButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>766</width>
+     <width>725</width>
      <height>21</height>
     </rect>
    </property>
