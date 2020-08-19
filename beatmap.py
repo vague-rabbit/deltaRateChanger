@@ -84,7 +84,7 @@ class bm():
                     file.write("\n")
     
     def find_bpm(self):
-        # Finding uninherited timing points, storing [time, beattime]
+        # Finding uninherited timing points, storing [(time, beattime)]
         uninherited_timing_points_times = [(value[0], value[1]) for value in self.data["[TimingPoints]"] if value[6] == "1"]
         # Finding the differences between subsequent bpms = length of timing point, appending [time, length, bpm]
         diffs = []
