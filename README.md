@@ -13,5 +13,5 @@ Written in python using PyQt5.
 # Integration with osu!StreamCompanion for automatic loading of in-game selected maps
 1. Install and setup osu!StreamCompanion.
 2. Open settings → output patterns.
-3. Set the same settings as the below screenshot:
+3. Set the same settings as in the below screenshot:
 ![](screenshot2.png?raw=true)
