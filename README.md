@@ -7,7 +7,7 @@ Written in python using PyQt5.
 # Install (.exe)
 1. Download latest release of this.
 2. Download <b>ffmpeg</b>, <b>ffprobe</b> binaries, place them in the folder with this program(or make them system-wide by adding them to a PATH variable added folder)
-3. Open main.exe
+3. Open <b>main.exe</b>
 
 # Install (Python)  
 1. Install <b>Python</b> (obviously).  
