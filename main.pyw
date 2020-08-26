@@ -20,7 +20,7 @@ class Program():
     def initUI(self):
         self.app = QApplication(sys.argv)
         self.MainWindow = QtWidgets.QMainWindow()
-        self.ui = uic.loadUi("mainwindow.ui", self.MainWindow)
+        self.ui = uic.loadUi(self.resource_path("mainwindow.ui"), self.MainWindow)
         self.MainWindow.setFixedSize(self.MainWindow.size())
         self.ui.chooseDirectoryButton.clicked.connect(lambda: self.loadBeatmap(True))
         self.ui.changeRateButton.clicked.connect(self.changeSpeed)
@@ -29,6 +29,14 @@ class Program():
             fs_watcher = QtCore.QFileSystemWatcher(self.MainWindow)
             fs_watcher.addPath(self.selected_now)
             fs_watcher.fileChanged.connect(self.file_changed)
+    
+    def resource_path(self, relative_path):
+        # PyInstaller compatibility
+        try:
+            base_path = sys._MEIPASS
+        except Exception:
+            base_path = os.path.abspath(".")
+        return os.path.join(base_path, relative_path)
     
     def file_changed(self):
         with open(self.selected_now, "r", encoding="UTF-8") as file:
