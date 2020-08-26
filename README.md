@@ -4,7 +4,7 @@ My attempt at creating a rate changer for osu!.
 Tested only for osu! and osu!taiko game modes.
 Written in python using PyQt5.  
 
-# Install (Exe)
+# Install (.exe)
 1. Download latest release version of this.
 2. Download <b>ffmpeg</b>, <b>ffprobe</b> binaries, place them in the folder with this program(or make them system-wide by adding them to a PATH variable added folder)
 3. Open main.exe
