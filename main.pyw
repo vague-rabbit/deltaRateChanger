@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import QApplication, QFileDialog
 from beatmap import bm
 import subprocess
 import os
-
 from copy import deepcopy
 
 
