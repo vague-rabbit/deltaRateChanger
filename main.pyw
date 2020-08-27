@@ -27,7 +27,7 @@ class Program():
         if os.path.isfile(self.selected_now):
             fs_watcher = QtCore.QFileSystemWatcher(self.ui)
             fs_watcher.addPath(self.selected_now)
-            fs_watcher.fileChanged.connect(self.file_changed)
+            fs_watcher.fileChanged.connect(self.read_changed)
     
     def resource_path(self, relative_path):
         # PyInstaller compatibility
@@ -37,7 +37,7 @@ class Program():
             base_path = os.path.abspath(".")
         return os.path.join(base_path, relative_path)
     
-    def file_changed(self):
+    def read_changed(self):
         with open(self.selected_now, "r", encoding="UTF-8") as file:
             self.file_path = file.read().strip()
         self.loadBeatmap(False)
