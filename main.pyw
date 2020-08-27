@@ -140,4 +140,4 @@ class Program():
 if __name__ == "__main__":
     program = Program()
     program.ui.show()
-    sys.exit(program.app.exec_())
+    program.app.exec()
