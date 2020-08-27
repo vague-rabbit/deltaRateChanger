@@ -19,14 +19,13 @@ class Program():
 
     def initUI(self):
         self.app = QApplication(sys.argv)
-        self.MainWindow = QtWidgets.QMainWindow()
-        self.ui = uic.loadUi(self.resource_path("mainwindow.ui"), self.MainWindow)
-        self.MainWindow.setFixedSize(self.MainWindow.size())
+        self.ui = uic.loadUi(self.resource_path("mainwindow.ui"))
+        self.ui.setFixedSize(self.ui.size())
         self.ui.chooseDirectoryButton.clicked.connect(lambda: self.loadBeatmap(True))
         self.ui.changeRateButton.clicked.connect(self.changeSpeed)
         self.ui.changeBpmButton.clicked.connect(self.changeSpeed)
         if os.path.isfile(self.selected_now):
-            fs_watcher = QtCore.QFileSystemWatcher(self.MainWindow)
+            fs_watcher = QtCore.QFileSystemWatcher(self.ui)
             fs_watcher.addPath(self.selected_now)
             fs_watcher.fileChanged.connect(self.file_changed)
     
@@ -140,5 +139,5 @@ class Program():
 
 if __name__ == "__main__":
     program = Program()
-    program.MainWindow.show()
+    program.ui.show()
     sys.exit(program.app.exec_())
