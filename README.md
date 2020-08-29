@@ -1,7 +1,7 @@
 ![](screenshotp.png?raw=true)
 # δ Rate Changer  
 My attempt at creating a rate changer for osu!.  
-Tested only for osu! and osu!taiko game modes.
+Tested only for osu! and osu!taiko game modes.  
 Created in python using PyQt5.  
 
 # Install (.exe)
