@@ -2,7 +2,7 @@
 # δ Rate Changer  
 My attempt at creating a rate changer for osu!.  
 Tested only for osu! and osu!taiko game modes.
-Written in python using PyQt5.  
+Created in python using PyQt5.  
 
 # Install (.exe)
 1. Download latest release of this.
