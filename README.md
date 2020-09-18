@@ -3,6 +3,7 @@
 My attempt at creating a rate changer for osu!.  
 Tested only for osu! and osu!taiko game modes.  
 Created in python using PyQt5.  
+Currently UI scaling is broken but I will fix it sometime. 
 
 # Install (.exe)
 1. Download latest release of this.
